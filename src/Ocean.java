@@ -34,10 +34,14 @@ public class Ocean
      */
     public Fish getFishAt(int row, int col)
     {
-        // put code here
-        return null;
+        return ocean[row][col];
     }
     
+    public void putFishAt(int row, int col, Fish fish)
+    {
+        ocean[row][col] = fish;
+    }
+
     /**
      * @return The height of the ocean.
      */
