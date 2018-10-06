@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * (Fill in description and author info here)
@@ -8,6 +10,8 @@ public class Simulator
 {
     private Ocean ocean;
     private SimulatorView simView;
+
+    private List<Fish> fishes;
     
     
     public static void main(String[] args) 
@@ -20,8 +24,10 @@ public class Simulator
     
     public Simulator(int height, int width)
     {
-        ocean = new Ocean(height, width);
-        simView = new SimulatorView(height, width);
+        fishes = new ArrayList<Fish>(); //adiciona a LISTA onde especies de peixes ficarão
+        ocean = new Ocean(height, width); //equivalente a Field
+
+        simView = new SimulatorView(height, width); //interface gráfica
         
         // define in which color fish should be shown
         simView.setColor(Fish.class, Color.red);
