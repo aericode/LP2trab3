@@ -7,7 +7,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fish
+public abstract class Fish
 {
 	// The age at which a fish can start to breed.
     private static int BREEDING_AGE;
@@ -33,8 +33,12 @@ public class Fish
 	/**
 	 * Constructor for objects of class Fish
 	 */
-	public Fish()
+	public Fish(Ocean ocean, int row, int col)
 	{
+		age = 0;
+        alive = true;
+        this.ocean = ocean;
+        foodLevel = 7;
 	}
 
 }

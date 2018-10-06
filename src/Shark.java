@@ -8,5 +8,8 @@
  */
 public class Shark extends Fish
 {
-    
+    public Shark(Ocean ocean, int row, int col)
+	{
+		super(ocean, row, col);
+	}
 }

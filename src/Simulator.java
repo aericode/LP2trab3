@@ -44,14 +44,12 @@ public class Simulator
         simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
 
-        Fish tuna = new Tuna();
+        Fish tuna = new Tuna(ocean,1,1);
         ocean.putFishAt(1,1,tuna);
-        Fish sardine = new Sardine();
+        Fish sardine = new Sardine(ocean,2,2);
         ocean.putFishAt(2,2,sardine);
-        Fish shark = new Shark();
+        Fish shark = new Shark(ocean,3,3);
         ocean.putFishAt(3,3,shark);
-
-        //ocean.clear();
     }
     
 
@@ -83,6 +81,8 @@ public class Simulator
             }
         }
     } //ORIGINAL PARA REFERENCIA
+    
+
 
     private void populate()
     {
@@ -104,6 +104,6 @@ public class Simulator
             }
         }
     }
-    */
+    */    
 
 }
