@@ -30,7 +30,9 @@ public class Simulator
         simView = new SimulatorView(height, width); //interface gráfica
         
         // define in which color fish should be shown
-        simView.setColor(Fish.class, Color.red);
+        simView.setColor(Shark.class  , Color.gray);
+        simView.setColor(Sardine.class, Color.cyan);
+        simView.setColor(Tuna.class   , Color.red);
     }
     
     public void run(int steps)
