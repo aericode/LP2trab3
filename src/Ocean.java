@@ -42,6 +42,15 @@ public class Ocean
         ocean[row][col] = fish;
     }
 
+    public void clear()
+    {
+        for(int row = 0; row < height; row++) {
+            for(int col = 0; col < width; col++) {
+                ocean[row][col] = null;
+            }
+        }
+    }
+
     /**
      * @return The height of the ocean.
      */

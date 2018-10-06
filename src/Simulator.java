@@ -41,8 +41,17 @@ public class Simulator
         
         // define in which color fish should be shown
         simView.setColor(Shark.class  , Color.gray);
-        simView.setColor(Sardine.class, Color.cyan);
+        simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
+
+        Fish tuna = new Tuna();
+        ocean.putFishAt(1,1,tuna);
+        Fish sardine = new Sardine();
+        ocean.putFishAt(2,2,sardine);
+        Fish shark = new Shark();
+        ocean.putFishAt(3,3,shark);
+
+        //ocean.clear();
     }
     
 
