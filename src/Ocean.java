@@ -4,6 +4,16 @@
  */
 public class Ocean
 {
+
+    //height of the ocean
+    private int height;
+    //width of the ocean
+    private int width;
+
+    // Storage for the fishes
+    private Fish[][] ocean;
+
+
     /**
      * Represent an ocean of the given dimensions.
      * @param height The height of the ocean.
@@ -11,7 +21,9 @@ public class Ocean
      */
     public Ocean(int height, int width)
     {
-        // some code needs to go here
+        this.height = height;
+        this.width  = width;
+        ocean       = new Fish[height][width];
     }
     
     /**
@@ -31,8 +43,7 @@ public class Ocean
      */
     public int getHeight()
     {
-        // put something here
-        return 200;
+        return height;
     }
     
     /**
@@ -40,8 +51,7 @@ public class Ocean
      */
     public int getWidth()
     {
-        // and something here
-        return 200;
+        return width;
     }
 
 
