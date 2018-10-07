@@ -45,9 +45,11 @@ public class Simulator
         simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
 
-        Fish tuna = new Tuna(ocean,1,1);
-        Fish sardine = new Sardine(ocean,2,2);
-        Fish shark = new Shark(ocean,3,3);
+        //Fish tuna = new Tuna(ocean,1,1);
+        //Fish sardine = new Sardine(ocean,2,2);
+        //Fish shark = new Shark(ocean,3,3);
+
+        populate();
     }
     
 
@@ -58,33 +60,12 @@ public class Simulator
         simView.showStatus(0, ocean);
     }
 
-    /*
-    private void populate() //ORIGINAL PARA REFERENCIA
-    {
-        Random rand = Randomizer.getRandom();
-        field.clear();
-        for(int row = 0; row < field.getDepth(); row++) {
-            for(int col = 0; col < field.getWidth(); col++) {
-                if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
-                    foxes.add(fox);
-                }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
-                    rabbits.add(rabbit);
-                }
-                // else leave the location empty.
-            }
-        }
-    } //ORIGINAL PARA REFERENCIA
+    /**
+    * Sets up a simulation with fishes placed at random spots
     */
-
-
     private void populate()
     {
-        Random rand = Random.getRandom();
+        Random rand = new Random();
         ocean.clear();
         for(int row = 0; row < ocean.getHeight(); row++) {
             for(int col = 0; col < ocean.getWidth(); col++) {
