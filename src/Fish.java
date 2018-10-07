@@ -39,6 +39,7 @@ public abstract class Fish
         alive = true;
         this.ocean = ocean;
         foodLevel = 7;
+        ocean.putFishAt(row,col,this);
 	}
 
 }

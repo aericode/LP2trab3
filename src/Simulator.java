@@ -91,9 +91,8 @@ public class Simulator
         for(int row = 0; row < field.getHeight(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= SHARK_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
-                    foxes.add(fox);
+                    Fish Shark = new Shark(ocean,row,col);
+                    fishes.add(shark);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
