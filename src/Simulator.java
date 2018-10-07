@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * (Fill in description and author info here)
@@ -45,11 +46,8 @@ public class Simulator
         simView.setColor(Tuna.class   , Color.red);
 
         Fish tuna = new Tuna(ocean,1,1);
-        ocean.putFishAt(1,1,tuna);
         Fish sardine = new Sardine(ocean,2,2);
-        ocean.putFishAt(2,2,sardine);
         Fish shark = new Shark(ocean,3,3);
-        ocean.putFishAt(3,3,shark);
     }
     
 
@@ -81,28 +79,30 @@ public class Simulator
             }
         }
     } //ORIGINAL PARA REFERENCIA
-    
+    */
 
 
     private void populate()
     {
-        Random rand = Randomizer.getRandom();
+        Random rand = Random.getRandom();
         ocean.clear();
-        for(int row = 0; row < field.getHeight(); row++) {
-            for(int col = 0; col < field.getWidth(); col++) {
+        for(int row = 0; row < ocean.getHeight(); row++) {
+            for(int col = 0; col < ocean.getWidth(); col++) {
                 if(rand.nextDouble() <= SHARK_CREATION_PROBABILITY) {
-                    Fish Shark = new Shark(ocean,row,col);
+                    Fish shark = new Shark(ocean,row,col);
                     fishes.add(shark);
                 }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
-                    rabbits.add(rabbit);
+                else if(rand.nextDouble() <= TUNA_CREATION_PROBABILITY) {
+                    Fish tuna = new Tuna(ocean,row,col);
+                    fishes.add(tuna);
                 }
-                // else leave the location empty.
+                else if(rand.nextDouble() <= SARDINE_CREATION_PROBABILITY) {
+                    Fish sardine = new Sardine(ocean,row,col);
+                    fishes.add(sardine);
+                }
+
             }
         }
     }
-    */    
 
 }
