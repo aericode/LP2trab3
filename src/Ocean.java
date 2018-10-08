@@ -45,7 +45,7 @@ public class Ocean
         return ocean[row][col];
     }
     
-    public void putFishAt(Location location, Fish fish)
+    public void place(Fish fish, Location location)
     {
         ocean[location.getRow()][location.getCol()] = fish;
     }

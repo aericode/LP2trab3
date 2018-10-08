@@ -23,6 +23,8 @@ public abstract class Fish
     private int age;
     // Whether the fish is alive or not.
     private boolean alive;
+    // Encapsulated coordinates for this fish's spot
+    private Location location;
     // The ocean occupied.
     private Ocean ocean;
     // The fish's food level, which is increased by eating.
@@ -37,10 +39,9 @@ public abstract class Fish
 	{
 		age = 0;
         alive = true;
-        this.ocean = ocean;
+        this.location = location;
+        ocean.place(this,location);
         foodLevel = 7;
-
-        ocean.putFishAt(location,this);
 	}
 
 	/*
