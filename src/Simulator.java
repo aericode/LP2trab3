@@ -108,7 +108,7 @@ public class Simulator
         //rabbits.addAll(newRabbits);
         //fishes.addAll(newFishes);
 
-        view.showStatus(step, ocean);
+        simView.showStatus(step, ocean);
     }
 
 }

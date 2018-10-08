@@ -44,6 +44,12 @@ public class Ocean
     {
         return ocean[row][col];
     }
+
+    public Fish getFishAt(Location location)
+    {
+        return getFishAt(location.getRow(), location.getCol());
+    }
+    
     
     public void place(Fish fish, Location location)
     {
@@ -56,6 +62,38 @@ public class Ocean
             for(int col = 0; col < width; col++) {
                 ocean[row][col] = null;
             }
+        }
+    }
+
+    public List<Location> getFreeAdjacentLocations(Location location)
+    {
+        List<Location> free = new LinkedList<Location>();
+        List<Location> adjacent = adjacentLocations(location);
+        for(Location next : adjacent) {
+            if(getFishAt(next) == null) {
+                free.add(next);
+            }
+        }
+        return free;
+    }
+    
+    /**
+     * Try to find a free location that is adjacent to the
+     * given location. If there is none, return null.
+     * The returned location will be within the valid bounds
+     * of the field.
+     * @param location The location from which to generate an adjacency.
+     * @return A valid location within the grid area.
+     */
+    public Location freeAdjacentLocation(Location location)
+    {
+        // The available free ones.
+        List<Location> free = getFreeAdjacentLocations(location);
+        if(free.size() > 0) {
+            return free.get(0);
+        }
+        else {
+            return null;
         }
     }
 

@@ -62,4 +62,8 @@ public abstract class Fish
             }
         }
     }
+
+    public boolean isAlive(){
+    	return alive;
+    }
 }
