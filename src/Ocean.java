@@ -59,7 +59,13 @@ public class Ocean
         }
     }
 
-
+    /**
+     * Return a shuffled list of locations adjacent to the given one.
+     * The list will not include the location itself.
+     * All locations will lie within the grid.
+     * @param location The location from which to generate adjacencies.
+     * @return A list of locations adjacent to that given.
+     */
     public List<Location> adjacentLocations(Location location)
     {
         assert location != null : "Null location passed to adjacentLocations";
@@ -86,6 +92,14 @@ public class Ocean
             Collections.shuffle(locations, rand);
         }
         return locations;
+    }
+
+
+
+    public Location randomAdjacentLocation(Location location)
+    {
+        List<Location> adjacent = adjacentLocations(location);
+        return adjacent.get(0);
     }
 
 

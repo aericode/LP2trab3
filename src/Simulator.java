@@ -45,11 +45,11 @@ public class Simulator
         simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
 
-        //Fish tuna = new Tuna(ocean, new Location(1,1));
+        Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(1,1)));
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        populate();
+        //populate();
 
     }
     
