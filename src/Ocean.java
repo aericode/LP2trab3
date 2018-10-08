@@ -94,6 +94,11 @@ public class Ocean
         return fishSpots;
     }
 
+    public Fish randomAdjacentLocation(int row, int col){
+        List<Fish> adjacent = adjacentLocations(row, col);
+        return adjacent.get(0);
+    }
+
     /**
      * @return The height of the ocean.
      */

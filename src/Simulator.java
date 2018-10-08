@@ -49,7 +49,8 @@ public class Simulator
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        populate();
+        //populate();
+
     }
     
 
