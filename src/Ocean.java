@@ -45,9 +45,9 @@ public class Ocean
         return ocean[row][col];
     }
     
-    public void putFishAt(int row, int col, Fish fish)
+    public void putFishAt(Location location, Fish fish)
     {
-        ocean[row][col] = fish;
+        ocean[location.getRow()][location.getCol()] = fish;
     }
 
     public void clear()
@@ -59,21 +59,15 @@ public class Ocean
         }
     }
 
-    /**
-     * Return a shuffled list of locations adjacent to the given one.
-     * The list will not include the location itself.
-     * All locations will lie within the grid.
-     * @param row X coordinate of the function's target
-     * @param col Y coordinate of the function's target
-     * @return A list of locations adjacent to that given.
-     */
-    public List<Fish> adjacentLocations(int row, int col)
-    {
-        boolean is_valid = (row < 0 || row > height) && (col < 0 || col > width);
-        // The list of locations to be returned.
-        List<Fish> fishSpots = new LinkedList<Fish>();
-        if( is_valid ) {
 
+    public List<Location> adjacentLocations(Location location)
+    {
+        assert location != null : "Null location passed to adjacentLocations";
+        // The list of locations to be returned.
+        List<Location> locations = new LinkedList<Location>();
+        if(location != null) {
+            int row = location.getRow();
+            int col = location.getCol();
             for(int roffset = -1; roffset <= 1; roffset++) {
                 int nextRow = row + roffset;
                 if(nextRow >= 0 && nextRow < height) {
@@ -81,7 +75,7 @@ public class Ocean
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
                         if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
-                            fishSpots.add(ocean[row][col]);
+                            locations.add(new Location(nextRow, nextCol));
                         }
                     }
                 }
@@ -89,15 +83,11 @@ public class Ocean
             
             // Shuffle the list. Several other methods rely on the list
             // being in a random order.
-            Collections.shuffle(fishSpots, rand);
+            Collections.shuffle(locations, rand);
         }
-        return fishSpots;
+        return locations;
     }
 
-    public Fish randomAdjacentLocation(int row, int col){
-        List<Fish> adjacent = adjacentLocations(row, col);
-        return adjacent.get(0);
-    }
 
     /**
      * @return The height of the ocean.

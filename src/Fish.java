@@ -33,14 +33,32 @@ public abstract class Fish
 	/**
 	 * Constructor for objects of class Fish
 	 */
-	public Fish(Ocean ocean, int row, int col)
+	public Fish(Ocean ocean, Location location)
 	{
 		age = 0;
         alive = true;
         this.ocean = ocean;
         foodLevel = 7;
 
-        ocean.putFishAt(row,col,this);
+        ocean.putFishAt(location,this);
 	}
 
+	/*
+	//TESTANDO UMA AÇÃO DEFAULT
+	public void act()
+    {
+        incrementAge();
+        if(alive) {          
+            // Try to move into a free location.
+            Location newLocation = field.freeAdjacentLocation(location);
+            if(newLocation != null) {
+                setLocation(newLocation);
+            }
+            else {
+                // Overcrowding.
+                setDead();
+            }
+        }
+    }
+    */
 }

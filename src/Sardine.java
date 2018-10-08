@@ -9,9 +9,9 @@
  */
 public class Sardine extends Fish
 {
-	public Sardine(Ocean ocean, int row, int col)
+	public Sardine(Ocean ocean, Location location)
 	{
-		super(ocean, row, col);
+		super(ocean, location);
 	}
     
 }

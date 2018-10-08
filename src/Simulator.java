@@ -45,11 +45,11 @@ public class Simulator
         simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
 
-        //Fish tuna = new Tuna(ocean,1,1);
+        //Fish tuna = new Tuna(ocean, new Location(1,1));
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        //populate();
+        populate();
 
     }
     
@@ -71,15 +71,15 @@ public class Simulator
         for(int row = 0; row < ocean.getHeight(); row++) {
             for(int col = 0; col < ocean.getWidth(); col++) {
                 if(rand.nextDouble() <= SHARK_CREATION_PROBABILITY) {
-                    Fish shark = new Shark(ocean,row,col);
+                    Fish shark = new Shark(ocean, new Location(row,col));
                     fishes.add(shark);
                 }
                 else if(rand.nextDouble() <= TUNA_CREATION_PROBABILITY) {
-                    Fish tuna = new Tuna(ocean,row,col);
+                    Fish tuna = new Tuna(ocean, new Location(row,col));
                     fishes.add(tuna);
                 }
                 else if(rand.nextDouble() <= SARDINE_CREATION_PROBABILITY) {
-                    Fish sardine = new Sardine(ocean,row,col);
+                    Fish sardine = new Sardine(ocean, new Location(row,col));
                     fishes.add(sardine);
                 }
 
