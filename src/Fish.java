@@ -25,7 +25,7 @@ public abstract class Fish
     private boolean alive;
     // The ocean occupied.
     private Ocean ocean;
-    // The fish's food level, which is increased by eating rabbits.
+    // The fish's food level, which is increased by eating.
     private int foodLevel;
 
 
@@ -39,6 +39,7 @@ public abstract class Fish
         alive = true;
         this.ocean = ocean;
         foodLevel = 7;
+
         ocean.putFishAt(row,col,this);
 	}
 
