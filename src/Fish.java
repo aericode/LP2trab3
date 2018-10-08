@@ -7,7 +7,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Fish
+public class Fish
 {
 	// The age at which a fish can start to breed.
     private static int BREEDING_AGE;

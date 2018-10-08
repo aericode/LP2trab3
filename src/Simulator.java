@@ -48,6 +48,7 @@ public class Simulator
         simView.setColor(Tuna.class   , Color.red);
 
         Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(1,1)));
+        //fishes.add(tuna);
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
@@ -58,9 +59,13 @@ public class Simulator
 
     public void run(int steps)
     {
+        //DEMONSTRANDO BUG Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(1,1)));
         // put the simulation main loop here
-        
-        simView.showStatus(0, ocean);
+        while(true){
+            //DEMONSTRANDO BUG tuna.act();
+            //simulateOneStep();
+            simView.showStatus(step, ocean);
+        }
     }
 
     /**
