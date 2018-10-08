@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
 
 /**
  * (Fill in description and author info here)
@@ -10,14 +11,15 @@ import java.util.Random;
 public class Simulator
 {
 
-    // The probability that a fox will be created in any given grid position.
+    // The probability that a Shark will be created in any given grid position.
     private static final double SHARK_CREATION_PROBABILITY = 0.02;
-    // The probability that a rabbit will be created in any given grid position.
+    // The probability that a Tuna will be created in any given grid position.
     private static final double TUNA_CREATION_PROBABILITY = 0.03;
-    // The probability that a fox will be created in any given grid position.
+    // The probability that a Sardine will be created in any given grid position.
     private static final double SARDINE_CREATION_PROBABILITY = 0.05;
 
 
+    private int step;
 
     private Ocean ocean;
     private SimulatorView simView;
@@ -45,11 +47,11 @@ public class Simulator
         simView.setColor(Sardine.class, Color.blue);
         simView.setColor(Tuna.class   , Color.red);
 
-        //Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(1,1)));
+        Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(1,1)));
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        populate();
+        //populate();
 
     }
     
@@ -85,6 +87,28 @@ public class Simulator
 
             }
         }
+    }
+
+    public void simulateOneStep()
+    {
+        step++;
+
+        // Provide space for newborn fish.
+        //List<Fish> newFoxes = new ArrayList<Fox>();        
+        // Let all fishes act.
+        for(Iterator<Fish> it = fishes.iterator(); it.hasNext(); ) {
+            Fish fish = it.next();
+            fish.act();
+            if(! fish.isAlive()) {
+                it.remove();
+            }
+        }
+        
+        // Add the newly born fishes and rabbits to the main lists.
+        //rabbits.addAll(newRabbits);
+        //fishes.addAll(newFishes);
+
+        view.showStatus(step, ocean);
     }
 
 }

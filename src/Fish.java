@@ -39,27 +39,27 @@ public abstract class Fish
 	{
 		age = 0;
         alive = true;
+        foodLevel = 7;
+
+        //SETLOCATION
         this.location = location;
         ocean.place(this,location);
-        foodLevel = 7;
 	}
 
-	/*
-	//TESTANDO UMA AÇÃO DEFAULT
 	public void act()
     {
-        incrementAge();
+        //incrementAge();
         if(alive) {          
             // Try to move into a free location.
-            Location newLocation = field.freeAdjacentLocation(location);
+            Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
-                setLocation(newLocation);
+                this.location = location;
+        		ocean.place(this,location);
             }
             else {
                 // Overcrowding.
-                setDead();
+                //setDead();
             }
         }
     }
-    */
 }
