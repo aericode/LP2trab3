@@ -40,9 +40,13 @@ public class Fish
 		age = 0;
         alive = true;
         foodLevel = 7;
+        this.ocean = ocean;
 
-        //SETLOCATION
-        this.location = location;
+        setLocation(location);
+	}
+
+	public void setLocation(Location location){
+		this.location = location;
         ocean.place(this,location);
 	}
 
@@ -53,8 +57,7 @@ public class Fish
             // Try to move into a free location.
             Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
-                this.location = location;
-        		ocean.place(this,location);
+                setLocation(newLocation);
             }
             else {
                 // Overcrowding.
