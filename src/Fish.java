@@ -55,7 +55,7 @@ public class Fish
         //incrementAge();
         if(alive) {          
             // Try to move into a free location.
-            Location newLocation = ocean.freeAdjacentLocation(location);
+            Location newLocation = ocean.randomAdjacentLocation(location);
             if(newLocation != null) {
                 setLocation(newLocation);
             }
