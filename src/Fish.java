@@ -72,4 +72,15 @@ public class Fish
     public boolean isAlive(){
     	return alive;
     }
+
+
+    private void setDead()
+    {
+        alive = false;
+        if(location != null) {
+            ocean.clear(location);
+            location = null;
+            ocean = null;
+        }
+    }
 }

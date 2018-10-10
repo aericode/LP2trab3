@@ -30,7 +30,7 @@ public class Simulator
     public static void main(String[] args) 
     {
         Simulator sim = new Simulator(50, 60);
-        sim.run(1000);
+        sim.run(10000);
     }
     
     
@@ -52,18 +52,19 @@ public class Simulator
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        //populate();
+        populate();
 
     }
     
 
-    public void run(int steps)
+    public void run(int stepNum)
     {
-        Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
+        //Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
         // put the simulation main loop here
-        while(true){
-            tuna.act();
-            //simulateOneStep();
+        while(step < stepNum){
+            step++;
+            //tuna.act();
+            simulateOneStep();
             simView.showStatus(step, ocean);
         }
     }
