@@ -65,6 +65,11 @@ public class Ocean
         }
     }
 
+    public void clear(Location location)
+    {
+        ocean[location.getRow()][location.getCol()] = null;
+    }
+
     public List<Location> getFreeAdjacentLocations(Location location)
     {
         List<Location> free = new LinkedList<Location>();

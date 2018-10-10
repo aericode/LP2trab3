@@ -45,9 +45,12 @@ public class Fish
         setLocation(location);
 	}
 
-	public void setLocation(Location location){
-		this.location = location;
-        ocean.place(this,location);
+	public void setLocation(Location newLocation){
+		if(location != null) {
+            ocean.clear(location);
+        }
+		location = newLocation;
+        ocean.place(this,newLocation);
 	}
 
 	public void act()
@@ -55,7 +58,7 @@ public class Fish
         //incrementAge();
         if(alive) {          
             // Try to move into a free location.
-            Location newLocation = ocean.randomAdjacentLocation(location);
+            Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
                 setLocation(newLocation);
             }
