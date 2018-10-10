@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.Random;
 
 /**
  * Write a description of class Fish here.
@@ -10,13 +12,16 @@
 public class Fish
 {
 	// The age at which a fish can start to breed.
-    private static int BREEDING_AGE;
+    private static int BREEDING_AGE = 10;
     // The age to which a fish can live.
-    private static int MAX_AGE;
+    private static int MAX_AGE = 140;
     // The likelihood of a fish breeding.
-    private static double BREEDING_PROBABILITY;
+    private static double BREEDING_PROBABILITY = 0.35;
     // The maximum number of births.
-    private static int MAX_LITTER_SIZE;
+    private static int MAX_LITTER_SIZE = 5;
+    //Randomizer, shared among all fish
+    private static Random rand = new Random();
+
 
 
     // The fish's age.
@@ -37,7 +42,7 @@ public class Fish
 	 */
 	public Fish(Ocean ocean, Location location)
 	{
-		age = 0;
+		age = 20;
         alive = true;
         foodLevel = 7;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
         this.ocean = ocean;

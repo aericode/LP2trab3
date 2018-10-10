@@ -31,6 +31,7 @@ public class Simulator
     {
         Simulator sim = new Simulator(50, 60);
         sim.run(10000);
+        //sim.loneFish(10000);
     }
     
     
@@ -59,12 +60,23 @@ public class Simulator
 
     public void run(int stepNum)
     {
-        //Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
         // put the simulation main loop here
         while(step < stepNum){
-            //step++;
-            //tuna.act();
             simulateOneStep();
+            simView.showStatus(step, ocean);
+        }
+    }
+
+
+    public void loneFish(int stepNum)
+    {
+        Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
+        fishes.add(tuna);
+        // put the simulation main loop here
+        while(step < stepNum){
+            List<Fish> newFishes = new ArrayList<Fish>();
+            tuna.act(newFishes);
+            fishes.addAll(newFishes);
             simView.showStatus(step, ocean);
         }
     }
@@ -100,19 +112,18 @@ public class Simulator
         step++;
 
         // Provide space for newborn fish.
-        //List<Fish> newFoxes = new ArrayList<Fox>();        
+        List<Fish> newFishes = new ArrayList<Fish>();        
         // Let all fishes act.
         for(Iterator<Fish> it = fishes.iterator(); it.hasNext(); ) {
             Fish fish = it.next();
-            fish.act();
+            fish.act(newFishes);
             if(! fish.isAlive()) {
                 it.remove();
             }
         }
         
         // Add the newly born fishes and rabbits to the main lists.
-        //rabbits.addAll(newRabbits);
-        //fishes.addAll(newFishes);
+        fishes.addAll(newFishes);
 
         simView.showStatus(step, ocean);
     }
