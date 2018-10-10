@@ -62,7 +62,7 @@ public class Simulator
         //Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
         // put the simulation main loop here
         while(step < stepNum){
-            step++;
+            //step++;
             //tuna.act();
             simulateOneStep();
             simView.showStatus(step, ocean);

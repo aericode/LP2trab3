@@ -39,7 +39,7 @@ public class Fish
 	{
 		age = 0;
         alive = true;
-        foodLevel = 7;
+        foodLevel = 7;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
         this.ocean = ocean;
 
         setLocation(location);
@@ -53,10 +53,11 @@ public class Fish
         ocean.place(this,newLocation);
 	}
 
-	public void act()
+	public void act(List<Fish> newFishes)
     {
         //incrementAge();
-        if(alive) {          
+        if(alive) {
+        	giveBirth(newFishes);          
             // Try to move into a free location.
             Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
@@ -72,6 +73,44 @@ public class Fish
     public boolean isAlive(){
     	return alive;
     }
+
+
+
+	private void giveBirth(List<Fish> newFishes)
+    {
+        // New foxes are born into adjacent locations.
+        // Get a list of adjacent free locations.
+        List<Location> free = ocean.getFreeAdjacentLocations(location);
+        int births = breed();
+        for(int b = 0; b < births && free.size() > 0; b++) {
+            Location loc = free.remove(0);
+            Fish young = new Fish(ocean,loc);
+            newFishes.add(young);
+        }
+    }
+
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    private int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        }
+        return births;
+    }
+
+    /**
+     * A fox can breed if it has reached the breeding age.
+     */
+    private boolean canBreed()
+    {
+        return age >= BREEDING_AGE;
+    }
+
 
 
     private void setDead()
