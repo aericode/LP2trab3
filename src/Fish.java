@@ -66,7 +66,7 @@ public class Fish
             // Try to move into a free location.
             Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
-                setLocation(newLocation);
+                //setLocation(newLocation);
             }
             else {
                 // Overcrowding.
@@ -90,7 +90,7 @@ public class Fish
 
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fish young = new Fish(ocean,loc);
+            Fish young = new Tuna(ocean,loc);
             newFishes.add(young);
         }
     }
