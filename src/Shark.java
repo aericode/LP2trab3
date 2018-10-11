@@ -12,4 +12,9 @@ public class Shark extends Fish
 	{
 		super(ocean, location);
 	}
+
+	private Fish generateYoung(Ocean ocean, Location location){
+		Shark young = new Shark(ocean,location);
+		return young;
+	}
 }

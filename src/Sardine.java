@@ -13,5 +13,6 @@ public class Sardine extends Fish
 	{
 		super(ocean, location);
 	}
+
     
 }

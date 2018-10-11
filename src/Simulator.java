@@ -30,8 +30,8 @@ public class Simulator
     public static void main(String[] args) 
     {
         Simulator sim = new Simulator(50, 60);
-        sim.run(10000);
-        //sim.loneFish(10000);
+        //sim.run(10000);
+        sim.loneFish(10000);
     }
     
     
@@ -53,7 +53,7 @@ public class Simulator
         //Fish sardine = new Sardine(ocean,2,2);
         //Fish shark = new Shark(ocean,3,3);
 
-        populate();
+        //populate();
 
     }
     

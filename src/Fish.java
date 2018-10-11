@@ -29,9 +29,9 @@ public class Fish
     // Whether the fish is alive or not.
     private boolean alive;
     // Encapsulated coordinates for this fish's spot
-    private Location location;
+    protected Location location;
     // The ocean occupied.
-    private Ocean ocean;
+    protected Ocean ocean;
     // The fish's food level, which is increased by eating.
     private int foodLevel;
 
@@ -87,6 +87,7 @@ public class Fish
         // Get a list of adjacent free locations.
         List<Location> free = ocean.getFreeAdjacentLocations(location);
         int births = breed();
+
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
             Fish young = new Fish(ocean,loc);
@@ -94,12 +95,13 @@ public class Fish
         }
     }
 
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
      * @return The number of births (may be zero).
      */
-    private int breed()
+    protected int breed()
     {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
