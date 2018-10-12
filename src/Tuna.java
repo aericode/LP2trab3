@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -22,6 +23,26 @@ public class Tuna extends Fish
 		return young;
 	}
 
+	public void act(List<Fish> newFishes)
+    {
+        //incrementAge();
+        if(alive) {
+        	giveBirth(newFishes);          
+            // Try to move into a free location.
+            Location newLocation = findSardine(location);
+            if(newLocation == null) { 
+                newLocation = ocean.freeAdjacentLocation(location);
+            }
+            if(newLocation != null) {
+                setLocation(newLocation);
+            }
+            else {
+                // Overcrowding.
+                setDead();
+            }
+        }
+    }
+
 	private Location findSardine(Location location)
     {
         List<Location> adjacent = ocean.adjacentLocations(location);
@@ -30,12 +51,12 @@ public class Tuna extends Fish
             Location where = it.next();
             Fish fish = ocean.getFishAt(where);
             if(fish instanceof Sardine) {
-                Sardine sardine = (Sardine) sardine;
+                Sardine sardine = (Sardine) fish;
                 if(sardine.isAlive()) { 
                 	//remove the sardine
                     sardine.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
-                    
+                    foodLevel = FOOD_MAX;
+
                     return where;
                 }
             }

@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Iterator;
+import java.util.Random;
 
 /**
  * A simple model of a sardine.
@@ -18,5 +21,22 @@ public class Sardine extends Fish
 		Sardine young = new Sardine(ocean, loc);
 		return young;
 	}
+
+	public void act(List<Fish> newFishes)
+    {
+        //incrementAge();
+        if(alive) {
+        	giveBirth(newFishes);          
+            // Try to move into a free location.
+            Location newLocation = ocean.freeAdjacentLocation(location);
+            if(newLocation != null) {
+                setLocation(newLocation);
+            }
+            else {
+                // Overcrowding.
+                setDead();
+            }
+        }
+    }
     
 }

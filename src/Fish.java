@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -25,15 +26,15 @@ public abstract class Fish
 
 
     // The fish's age.
-    private int age;
+    protected int age;
     // Whether the fish is alive or not.
-    private boolean alive;
+    protected boolean alive;
     // Encapsulated coordinates for this fish's spot
     protected Location location;
     // The ocean occupied.
     protected Ocean ocean;
     // The fish's food level, which is increased by eating.
-    private int foodLevel;
+    protected int foodLevel;
 
 
 
@@ -58,22 +59,21 @@ public abstract class Fish
         ocean.place(this,newLocation);
 	}
 
-	public void act(List<Fish> newFishes)
-    {
-        //incrementAge();
-        if(alive) {
-        	giveBirth(newFishes);          
-            // Try to move into a free location.
-            Location newLocation = ocean.freeAdjacentLocation(location);
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
-            else {
-                // Overcrowding.
-                setDead();
-            }
-        }
-    }
+
+    /**
+     * Generates a fish of the calling subclass' class
+     * @return fish created based on the subclasses' class
+     */
+    protected abstract Fish spawnYoung(Ocean ocean,Location loc);
+
+
+    /**
+     * Abstract method for fishes to do their specific actions determined in subclasses
+     * @param newFishes lists the fishes bred by the individual, allowing them
+     * to be added to the main list at the end of each iteration
+     */
+	public abstract void act(List<Fish> newFishes);
+
 
     public boolean isAlive(){
     	return alive;
@@ -81,7 +81,7 @@ public abstract class Fish
 
 
 
-	private void giveBirth(List<Fish> newFishes)
+	protected void giveBirth(List<Fish> newFishes)
     {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -95,7 +95,6 @@ public abstract class Fish
         }
     }
 
-    protected abstract Fish spawnYoung(Ocean ocean,Location loc);
 
 
     /**
@@ -113,16 +112,16 @@ public abstract class Fish
     }
 
     /**
-     * A fox can breed if it has reached the breeding age.
+     * A fish can breed if it has reached the breeding age.
      */
-    private boolean canBreed()
+    protected boolean canBreed()
     {
         return age >= BREEDING_AGE;
     }
 
 
 
-    private void setDead()
+    protected void setDead()
     {
         alive = false;
         if(location != null) {
