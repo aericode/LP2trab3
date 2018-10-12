@@ -66,11 +66,11 @@ public abstract class Fish
             // Try to move into a free location.
             Location newLocation = ocean.freeAdjacentLocation(location);
             if(newLocation != null) {
-                //setLocation(newLocation);
+                setLocation(newLocation);
             }
             else {
                 // Overcrowding.
-                //setDead();
+                setDead();
             }
         }
     }
