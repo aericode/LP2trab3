@@ -13,8 +13,9 @@ public class Shark extends Fish
 		super(ocean, location);
 	}
 
-	private Fish generateYoung(Ocean ocean, Location location){
-		Shark young = new Shark(ocean,location);
+	protected Fish spawnYoung(Ocean ocean,Location loc){
+		Shark young = new Shark(ocean, loc);
 		return young;
 	}
+
 }

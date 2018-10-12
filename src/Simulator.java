@@ -70,7 +70,7 @@ public class Simulator
 
     public void loneFish(int stepNum)
     {
-        Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
+        Fish tuna = new Shark(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
         fishes.add(tuna);
         // put the simulation main loop here
         while(step < stepNum){

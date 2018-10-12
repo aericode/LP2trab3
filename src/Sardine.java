@@ -14,5 +14,9 @@ public class Sardine extends Fish
 		super(ocean, location);
 	}
 
+	protected Fish spawnYoung(Ocean ocean,Location loc){
+		Sardine young = new Sardine(ocean, loc);
+		return young;
+	}
     
 }

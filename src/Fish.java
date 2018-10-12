@@ -9,7 +9,7 @@ import java.util.Random;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fish
+public abstract class Fish
 {
 	// The age at which a fish can start to breed.
     private static int BREEDING_AGE = 10;
@@ -90,10 +90,12 @@ public class Fish
 
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fish young = new Tuna(ocean,loc);
+            Fish young = spawnYoung(ocean,loc);
             newFishes.add(young);
         }
     }
+
+    protected abstract Fish spawnYoung(Ocean ocean,Location loc);
 
 
     /**
@@ -101,7 +103,7 @@ public class Fish
      * if it can breed.
      * @return The number of births (may be zero).
      */
-    protected int breed()
+    private int breed()
     {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
