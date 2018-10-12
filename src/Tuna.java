@@ -18,6 +18,11 @@ public class Tuna extends Fish
 		super(ocean, location);
 	}
 
+	public Tuna(Ocean ocean, Location location,int age)
+	{
+		super(ocean, location, age);
+	}
+
 	protected Fish spawnYoung(Ocean ocean,Location loc){
 		Tuna young = new Tuna(ocean, loc);
 		return young;
@@ -25,7 +30,8 @@ public class Tuna extends Fish
 
 	public void act(List<Fish> newFishes)
     {
-        //incrementAge();
+        incrementAge();
+        incrementHunger();
         if(alive) {
         	giveBirth(newFishes);          
             // Try to move into a free location.

@@ -88,15 +88,15 @@ public class Simulator
         for(int row = 0; row < ocean.getHeight(); row++) {
             for(int col = 0; col < ocean.getWidth(); col++) {
                 if(rand.nextDouble() <= SHARK_CREATION_PROBABILITY) {
-                    Fish shark = new Shark(ocean, new Location(row,col));
+                    Fish shark = new Shark(ocean, new Location(row,col), 10);
                     fishes.add(shark);
                 }
                 else if(rand.nextDouble() <= TUNA_CREATION_PROBABILITY) {
-                    Fish tuna = new Tuna(ocean, new Location(row,col));
+                    Fish tuna = new Tuna(ocean, new Location(row,col), 10);
                     fishes.add(tuna);
                 }
                 else if(rand.nextDouble() <= SARDINE_CREATION_PROBABILITY) {
-                    Fish sardine = new Sardine(ocean, new Location(row,col));
+                    Fish sardine = new Sardine(ocean, new Location(row,col), 10);
                     fishes.add(sardine);
                 }
 

@@ -12,12 +12,13 @@ import java.util.Random;
  */
 public abstract class Fish
 {
+	private static int INIT_HUNGER = 4;
 	// The age at which a fish can start to breed.
     private static int BREEDING_AGE = 10;
     // The age to which a fish can live.
     private static int MAX_AGE = 140;
     // The likelihood of a fish breeding.
-    private static double BREEDING_PROBABILITY = 0.35;
+    private static double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
     private static int MAX_LITTER_SIZE = 5;
     //Randomizer, shared among all fish
@@ -45,7 +46,20 @@ public abstract class Fish
 	{
 		age = 20;
         alive = true;
-        foodLevel = 7;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
+        foodLevel = INIT_HUNGER;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
+        this.ocean = ocean;
+
+        setLocation(location);
+	}
+
+	/**
+	 * Usado para instanciar peixes em idade reprodutiva no populate
+	 */
+	public Fish(Ocean ocean, Location location, int age)
+	{
+		this.age = age;
+        alive = true;
+        foodLevel = INIT_HUNGER;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
         this.ocean = ocean;
 
         setLocation(location);
@@ -119,7 +133,21 @@ public abstract class Fish
         return age >= BREEDING_AGE;
     }
 
+    protected void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
 
+    protected void incrementAge()
+    {
+        age++;
+        if(age > MAX_AGE) {
+            setDead();
+        }
+    }
 
     protected void setDead()
     {

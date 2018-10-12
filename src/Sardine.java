@@ -17,6 +17,11 @@ public class Sardine extends Fish
 		super(ocean, location);
 	}
 
+	public Sardine(Ocean ocean, Location location,int age)
+	{
+		super(ocean, location, age);
+	}
+
 	protected Fish spawnYoung(Ocean ocean,Location loc){
 		Sardine young = new Sardine(ocean, loc);
 		return young;
@@ -24,7 +29,7 @@ public class Sardine extends Fish
 
 	public void act(List<Fish> newFishes)
     {
-        //incrementAge();
+        incrementAge();
         if(alive) {
         	giveBirth(newFishes);          
             // Try to move into a free location.
