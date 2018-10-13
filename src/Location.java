@@ -6,6 +6,7 @@
  */
 public class Location
 {
+
     // Row and column positions.
     private int row;
     private int col;
@@ -70,4 +71,5 @@ public class Location
     {
         return col;
     }
+
 }

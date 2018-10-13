@@ -11,6 +11,7 @@ import java.util.Random;
  */
 public class Tuna extends Fish
 {
+	
 	int FOOD_MAX = 7;
 
 	public Tuna(Ocean ocean, Location location)

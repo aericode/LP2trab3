@@ -12,6 +12,8 @@ import java.util.Random;
  */
 public class Sardine extends Fish
 {
+    int FOOD_MAX = 7;
+
 	public Sardine(Ocean ocean, Location location)
 	{
 		super(ocean, location);
@@ -30,7 +32,9 @@ public class Sardine extends Fish
 	public void act(List<Fish> newFishes)
     {
         incrementAge();
+        //incrementHunger();
         if(alive) {
+            //eatAlgae();
         	giveBirth(newFishes);          
             // Try to move into a free location.
             Location newLocation = ocean.freeAdjacentLocation(location);
@@ -41,6 +45,13 @@ public class Sardine extends Fish
                 // Overcrowding.
                 setDead();
             }
+        }
+    }
+
+    private void eatAlgae(){
+        Algae algae = ocean.getAlgaeAt(location);
+        if(algae.getEaten()){
+            foodLevel = FOOD_MAX;
         }
     }
     

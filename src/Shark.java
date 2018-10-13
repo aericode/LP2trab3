@@ -11,8 +11,9 @@ import java.util.Random;
  */
 public class Shark extends Fish
 {
+
 	int FOOD_MAX = 7;
-	
+
     public Shark(Ocean ocean, Location location)
 	{
 		super(ocean, location);
@@ -84,6 +85,9 @@ public class Shark extends Fish
                 newLocation = findSardine(location);
             }
             if(newLocation == null) {
+                newLocation = ocean.getSharklessLocation(location);
+            }
+            if(newLocation == null){
                 newLocation = ocean.freeAdjacentLocation(location);
             }
             if(newLocation != null) {

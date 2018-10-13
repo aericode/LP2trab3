@@ -20,6 +20,7 @@ public class Ocean
 
     // Storage for the fishes
     private Fish[][] ocean;
+    private Algae[][] algae;
 
 
     /**
@@ -32,6 +33,7 @@ public class Ocean
         this.height = height;
         this.width  = width;
         ocean       = new Fish[height][width];
+        algae       = new Algae[height][width];
     }
     
     /**
@@ -49,11 +51,27 @@ public class Ocean
     {
         return getFishAt(location.getRow(), location.getCol());
     }
+
+
+    public Algae getAlgaeAt(int row, int col)
+    {
+        return algae[row][col];
+    }
+
+    public Algae getAlgaeAt(Location location)
+    {
+        return getAlgaeAt(location.getRow(), location.getCol());
+    }
     
     
     public void place(Fish fish, Location location)
     {
         ocean[location.getRow()][location.getCol()] = fish;
+    }
+
+    public void place(Algae newAlgae, Location location)
+    {
+        algae[location.getRow()][location.getCol()] = newAlgae;
     }
 
     public void clear()
@@ -81,7 +99,8 @@ public class Ocean
         }
         return free;
     }
-    
+
+
     /**
      * Try to find a free location that is adjacent to the
      * given location. If there is none, return null.
@@ -137,7 +156,47 @@ public class Ocean
         return locations;
     }
 
+    public List<Location> freeSharklessLocations(Location location)
+    {
+        List<Location> sharkless = new LinkedList<Location>();
 
+        
+        if(location != null) {
+            
+            //supposes every free location around it is sharkless
+            sharkless = getFreeAdjacentLocations(location);
+
+            //Gets all actually free locations to test if they're indeed sharkless
+            List<Location> adjacent  = getFreeAdjacentLocations(location);
+            for(Location next : adjacent) {
+                //checks around every node around it
+                List<Location> adjacentInside  = adjacentLocations(next);
+                for(Location nextInside : adjacentInside) {
+                    //checks if it's a shark other than the caller of the method
+                    if(getFishAt(nextInside) instanceof Shark && !nextInside.equals(location)) {
+                        //removes the location (from the outside loop) from the sharkless list and goes to the next one
+                        sharkless.remove(next);
+                        break;
+                    }
+                }
+            }
+            //randomizes for use in other functions
+            //Collections.shuffle(sharkless, rand);
+        }
+        
+
+        return sharkless;
+    }
+    
+    public Location getSharklessLocation(Location location)
+    {
+        List<Location> sharkless = freeSharklessLocations(location);
+        if(sharkless.isEmpty()){
+            return null;
+        }else{
+            return sharkless.get(0);
+        }
+    }
 
     public Location randomAdjacentLocation(Location location)
     {

@@ -12,6 +12,8 @@ import java.util.Random;
  */
 public abstract class Fish
 {
+
+	// Initial hunger of a fish
 	private static int INIT_HUNGER = 4;
 	// The age at which a fish can start to breed.
     private static int BREEDING_AGE = 10;
@@ -44,7 +46,7 @@ public abstract class Fish
 	 */
 	public Fish(Ocean ocean, Location location)
 	{
-		age = 20;
+		age = 0;
         alive = true;
         foodLevel = INIT_HUNGER;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
         this.ocean = ocean;

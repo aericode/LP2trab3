@@ -25,6 +25,7 @@ public class Simulator
     private SimulatorView simView;
 
     private List<Fish> fishes;
+    private List<Algae>algae_list;
     
     
     public static void main(String[] args) 
@@ -44,11 +45,12 @@ public class Simulator
         simView = new SimulatorView(height, width); //interface gráfica
         
         // define in which color fish should be shown
-        simView.setColor(Shark.class  , Color.gray);
-        simView.setColor(Sardine.class, Color.blue);
+        simView.setColor(Shark.class  , Color.blue);
+        simView.setColor(Sardine.class, Color.green);
         simView.setColor(Tuna.class   , Color.red);
 
         populate();
+        //startAlgae();
 
     }
     
@@ -100,6 +102,18 @@ public class Simulator
                     fishes.add(sardine);
                 }
 
+            }
+        }
+    }
+
+    private void startAlgae()
+    {
+        Random rand = new Random();
+
+        for(int row = 0; row < ocean.getHeight(); row++) {
+            for(int col = 0; col < ocean.getWidth(); col++) {
+                Algae algae = new Algae(ocean,new Location(row,col));
+                algae_list.add(algae);
             }
         }
     }
