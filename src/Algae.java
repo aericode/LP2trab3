@@ -47,6 +47,9 @@ public class Algae
         return location.getCol();
     }
 
+    /**
+     * raises the amount of algae in the spot
+     */
     public void growAlgae()
     {
         if(algae_count<10){
@@ -54,6 +57,9 @@ public class Algae
         }
     }
 
+    /**
+     * Gives 1 of it's count's to the nearby algae spots
+     */
     public void spreadAlgae()
     {
         //limitWidth
@@ -82,6 +88,10 @@ public class Algae
 
     }
 
+    /**
+     * Checks if is there spot for more algae
+     * @return if it was possible to receive 1 algae unit
+     */
     public boolean receiveAlgae(){
         if(algae_count>= 10){
             return false;
@@ -91,12 +101,20 @@ public class Algae
         }
     }
 
+    /**
+     * Tests if is it possible to give it's neighbor more algae units. It it is, removes one from himself.
+     * @param otherAlgae the receiver of the algae unit
+     */
     public void giveAlgae(Algae otherAlgae){
         if (otherAlgae.receiveAlgae()){
             algae_count--;
         }
     }
 
+    /**
+     * Checks if is there algae for the caller of the function to eat
+     * @return was there anything for it to eat?
+     */
     public boolean getEaten(){
         if(algae_count>0){
             algae_count--;
@@ -106,6 +124,9 @@ public class Algae
         }
     }
 
+    /**
+     * Grows, and then spreads if above a certain count
+     */
     public void act()
     {
         growAlgae();

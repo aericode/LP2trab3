@@ -14,21 +14,42 @@ public class Tuna extends Fish
 	
 	int FOOD_MAX = 7;
 
+    /**
+     * Constructor for objects of class Tuna (used for newborn fish initialization)
+     * @param ocean external fish matrix needed to make function calls that reach other fishes
+     * @param location encapsulated location for easy access and return
+     */
 	public Tuna(Ocean ocean, Location location)
 	{
 		super(ocean, location);
 	}
 
+    /**
+     * Overloaded constructor for objects of class Tuna (used at the populate method, to make breeding age fish)
+     * @param ocean external fish matrix needed to make function calls that reach other fishes
+     * @param location encapsulated location for easy access and return
+     * @param age at what age is your fish is born
+     */
 	public Tuna(Ocean ocean, Location location,int age)
 	{
 		super(ocean, location, age);
 	}
 
+    /**
+     * Gives a new fish from the subclass for the super to add to the ocean matrix
+     * @param ocean external fish matrix needed to make function calls that reach other fishes
+     * @param loc location where the newborn needs to be spawneds
+     * @return the new fish spawned
+     */
 	protected Fish spawnYoung(Ocean ocean,Location loc){
 		Tuna young = new Tuna(ocean, loc);
 		return young;
 	}
 
+    /**
+     * Defines tunas' behavior, aging, feeding, breeding, movement and death condition
+     * @param newFishes newborn fishes will be added here to be added to the ocean matrix later
+     */
 	public void act(List<Fish> newFishes)
     {
         incrementAge();
@@ -50,6 +71,11 @@ public class Tuna extends Fish
         }
     }
 
+    /**
+     * Looks around for sardine, eats it if found, and says the location where it was
+     * @param location location where the Tuna is
+     * @return where was the eaten sardine or null if there was none
+     */
 	private Location findSardine(Location location)
     {
         List<Location> adjacent = ocean.adjacentLocations(location);

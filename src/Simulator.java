@@ -18,31 +18,41 @@ public class Simulator
     // The probability that a Sardine will be created in any given grid position.
     private static final double SARDINE_CREATION_PROBABILITY = 0.05;
 
-
+    // In which step of the simulation are you
     private int step;
 
+    // Stores tha fishes and location data
     private Ocean ocean;
+    // Graphical interface
     private SimulatorView simView;
 
+    // List for iterations
     private List<Fish> fishes;
+
+    // Algae that Sardines eat
     private List<Algae>algae_list;
     
-    
+
     public static void main(String[] args) 
     {
+        //starts the simulation
         Simulator sim = new Simulator(50, 60);
         sim.run(10000);
-        //sim.loneFish(10000);
     }
     
     
-    
+    /**
+    * Constructor method for the Simulator, starts up the fish population
+    * @param height Height of the simulation frame (in world units)
+    * @param width  Width of the simulation frame (in world units)
+    */
     public Simulator(int height, int width)
     {
-        fishes = new ArrayList<Fish>(); //adiciona a LISTA onde especies de peixes ficarão
-        ocean = new Ocean(height, width); //equivalente a Field
+        // Initializes the elements of the simulation
+        fishes = new ArrayList<Fish>(); 
+        ocean = new Ocean(height, width); 
 
-        simView = new SimulatorView(height, width); //interface gráfica
+        simView = new SimulatorView(height, width); 
         
         // define in which color fish should be shown
         simView.setColor(Shark.class  , Color.blue);
@@ -55,6 +65,10 @@ public class Simulator
     }
     
 
+    /**
+    * Iteration method to keep the simulation running
+    * @param stepNum number of iterations before the simulation stops
+    */
     public void run(int stepNum)
     {
         // put the simulation main loop here
@@ -64,7 +78,10 @@ public class Simulator
         }
     }
 
-
+    /**
+    * Debug method to test individual behaviors of a single fish
+    * @param stepNum number of iterations before the simulation stops
+    */
     public void loneFish(int stepNum)
     {
         Fish tuna = new Tuna(ocean, ocean.randomAdjacentLocation(new Location(20,30)));
@@ -106,9 +123,11 @@ public class Simulator
         }
     }
 
+    /**
+    * Initiates the algae coordinates and quantity
+    */
     private void startAlgae()
     {
-        Random rand = new Random();
 
         for(int row = 0; row < ocean.getHeight(); row++) {
             for(int col = 0; col < ocean.getWidth(); col++) {
@@ -118,6 +137,9 @@ public class Simulator
         }
     }
 
+    /**
+    * Global call for all fishes to do their predetermined behaviours
+    */
     public void simulateOneStep()
     {
         step++;

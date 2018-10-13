@@ -20,7 +20,7 @@ public abstract class Fish
     // The age to which a fish can live.
     private static int MAX_AGE = 140;
     // The likelihood of a fish breeding.
-    private static double BREEDING_PROBABILITY = 0.12;
+    private static double BREEDING_PROBABILITY = 0.20;
     // The maximum number of births.
     private static int MAX_LITTER_SIZE = 5;
     //Randomizer, shared among all fish
@@ -36,37 +36,45 @@ public abstract class Fish
     protected Location location;
     // The ocean occupied.
     protected Ocean ocean;
-    // The fish's food level, which is increased by eating.
+    // The fish's food level, which is increased by eating. How many turns can it take without eating before he dies.
     protected int foodLevel;
 
 
 
 	/**
-	 * Constructor for objects of class Fish
+	 * Constructor for objects of class Fish (used for newborn fish initialization)
+     * @param ocean external fish matrix needed to make function calls that reach other fishes
+     * @param location encapsulated location for easy access and return
 	 */
 	public Fish(Ocean ocean, Location location)
 	{
 		age = 0;
         alive = true;
-        foodLevel = INIT_HUNGER;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
+        foodLevel = INIT_HUNGER;
         this.ocean = ocean;
 
         setLocation(location);
 	}
 
-	/**
-	 * Usado para instanciar peixes em idade reprodutiva no populate
+    /**
+     * Overloaded constructor for objects of class Fish (used at the populate method, to make breeding age fish)
+     * @param ocean external fish matrix needed to make function calls that reach other fishes
+     * @param location encapsulated location for easy access and return
+     * @param age at what age is your fish is born
 	 */
 	public Fish(Ocean ocean, Location location, int age)
 	{
 		this.age = age;
         alive = true;
-        foodLevel = INIT_HUNGER;//COLOCAR VARIAVEL DE STARVATION NO LUGAR DO 7, N DE PASSOS SEM MORRER
+        foodLevel = INIT_HUNGER;
         this.ocean = ocean;
 
         setLocation(location);
 	}
 
+    /**
+     * Realocation of the fish in the ocean matrix
+     */
 	public void setLocation(Location newLocation){
 		if(location != null) {
             ocean.clear(location);
@@ -90,13 +98,19 @@ public abstract class Fish
      */
 	public abstract void act(List<Fish> newFishes);
 
-
+    /**
+     * Access method for the alive variable
+     * @return the alive atribute
+     */
     public boolean isAlive(){
     	return alive;
     }
 
 
-
+    /**
+     * Fills a list with a random amount of newborn fish, already spawned at the needed location
+     * @param newFishes lists the fishes bred by the individual, allowing them to be added to the main list at the end of each iteration
+     */
 	protected void giveBirth(List<Fish> newFishes)
     {
         // New foxes are born into adjacent locations.
@@ -135,6 +149,9 @@ public abstract class Fish
         return age >= BREEDING_AGE;
     }
 
+    /**
+     * Lowers the current food level, if it reaches zero the function kills it
+     */
     protected void incrementHunger()
     {
         foodLevel--;
@@ -143,6 +160,9 @@ public abstract class Fish
         }
     }
 
+    /**
+     * Raises the fish age, and kills it if it reaches the age limit
+     */
     protected void incrementAge()
     {
         age++;
@@ -151,6 +171,9 @@ public abstract class Fish
         }
     }
 
+    /**
+     * Removes the fish from the grid, and clears it's location
+     */
     protected void setDead()
     {
         alive = false;
